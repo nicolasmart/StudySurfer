@@ -5,12 +5,11 @@ def splitParagraph(paragraph :str):
     return sentences
 
 def genSRT(timing: list):
-    f = open("resources/subtitles.srt", "w")
-    for i in range(0,len(timing)):
-        f.write(str(i+1) + '\n')
-        f.write(f'{convertToTime(timing[i][0])} --> {convertToTime(timing[i][1])} \n')
-        f.write(timing[i][2]+ '\n' + '\n')
-    f.close()
+    with open("resources/subtitles.srt", "w", encoding='utf-8') as f:
+        for i in range(0, len(timing)):
+            f.write(str(i + 1) + '\n')
+            f.write(f'{convertToTime(timing[i][0])} --> {convertToTime(timing[i][1])} \n')
+            f.write(timing[i][2] + '\n' + '\n')
 
 def convertToTime(seconds: float): #Conversion from seconds to 00:00:00,000 for SRT file
     millisecond = seconds % 1 * 1000
